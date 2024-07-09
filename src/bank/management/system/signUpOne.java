@@ -1,9 +1,14 @@
 package bank.management.system;
+
+import com.toedter.calendar.JDateChooser;
+
 import javax.swing.*;
 import java.awt.*;
-import java.util.*;
-import com.toedter.calendar.JDateChooser;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
 
 public class signUpOne extends JFrame implements ActionListener{
     long random;
@@ -196,7 +201,15 @@ public class signUpOne extends JFrame implements ActionListener{
         String formno="" + random; /*long*/
         String name=nameTextField.getText();
         String fname=fatherTextField.getText();
-        String dob=((JTextField) dobc.getDateEditor().getUiComponent()).getText();
+        JDateChooser dobc = new JDateChooser();
+
+        Date selectedDate = dobc.getDate();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String dob = dateFormat.format(selectedDate);
+
+        System.out.println("Date of Birth: " + dob);
+
         String gender=null;
         if(male.isSelected()){
             gender="Male";

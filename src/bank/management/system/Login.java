@@ -1,8 +1,10 @@
 package bank.management.system;
-import java.awt.*;
-import java.awt.event.*;
+
 import javax.swing.*;
-import java.sql.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 
 public class Login extends JFrame implements ActionListener{
     JLabel l1,l2,l3;
@@ -90,7 +92,7 @@ public class Login extends JFrame implements ActionListener{
            conn c=new conn();
            String cardNumber=tf1.getText();
            String pinNumber=pf2.getText();
-           String q1="select * from login where cardnumber='"+cardNumber+"' and pinnumber='"+pinNumber+"'";
+           String q1="select * from login where tf1='"+cardNumber+"' and pf2='"+pinNumber+"'";
            try{
                ResultSet rs=c.s.executeQuery(q1);
                if(rs.next()){
