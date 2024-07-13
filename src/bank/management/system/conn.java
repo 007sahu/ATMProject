@@ -15,7 +15,7 @@ public class conn{
         Class.forName("com.mysql.cj.jdbc.Driver");
         c = DriverManager.getConnection(url,username,password);
         s=c.createStatement();
-        rs = s.executeQuery("select * from atm");
+
     }catch(Exception e){
         System.out.println(e);
     }

@@ -7,9 +7,9 @@ import java.util.*;
 public class Withdraw extends JFrame implements ActionListener{
     JButton withdraw,back;
     JTextField amount;
-    String pinnumber;
+    String pinNumber;
     public Withdraw(String pinnumber){
-        this.pinnumber=pinnumber;
+        this.pinNumber=pinnumber;
         setSize(800,800);
         setLocation(300,0);
         setVisible(true);
@@ -52,11 +52,11 @@ public class Withdraw extends JFrame implements ActionListener{
              }else{
                  try{
                      conn c=new conn();
-                    String q="insert into bank values('"+pinnumber+"','"+date+"','Withdraw','"+number+"')";
+                    String q="insert into bank values('"+pinNumber+"','"+date+"','Withdraw','"+number+"')";
                     c.s.executeUpdate(q);
                     JOptionPane.showMessageDialog(null,"Rs "+number+ "Withdrawl Succesfully");
                     setVisible(false);
-                    new Transactions(pinnumber).setVisible(true);
+                    new Transactions(pinNumber).setVisible(true);
                  }catch(Exception e){
                      System.out.println(e);
                  }
@@ -64,7 +64,7 @@ public class Withdraw extends JFrame implements ActionListener{
              }
         }else if(ae.getSource() == back){
             setVisible(false);
-            new Transactions(pinnumber).setVisible(true);
+            new Transactions(pinNumber).setVisible(true);
         }
     }
     

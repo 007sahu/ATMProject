@@ -2,14 +2,15 @@ package bank.management.system;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Deposite extends JFrame implements ActionListener{
     JButton deposit,back;
     JTextField amount;
-    String pinnumber;
+    String pinNumber;
     public Deposite(String pinnumber){
-        this.pinnumber=pinnumber;
+        this.pinNumber=pinnumber;
         setSize(800,800);
         setLocation(300,0);
         setVisible(true);
@@ -47,16 +48,18 @@ public class Deposite extends JFrame implements ActionListener{
         if(ae.getSource() == deposit){
              String number=amount.getText();
              Date date=new Date();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String dob = dateFormat.format(date);
              if(number.equals("")){
                  JOptionPane.showMessageDialog(null,"PLease enter the amount you want to deposit");
              }else{
                  try{
                      conn c=new conn();
-                    String q="insert into bank values('"+pinnumber+"','"+date+"','Deposit','"+number+"')";
+                    String q="insert into bank values('"+pinNumber+"','"+date+"','Deposit','"+number+"')";
                     c.s.executeUpdate(q);
                     JOptionPane.showMessageDialog(null,"Rs"+number+ "Deposited Succesfully");
                     setVisible(false);
-                    new Transactions(pinnumber).setVisible(true);
+                    new Transactions(pinNumber).setVisible(true);
                  }catch(Exception e){
                      System.out.println(e);
                  }
@@ -64,7 +67,7 @@ public class Deposite extends JFrame implements ActionListener{
              }
         }else if(ae.getSource() == back){
             setVisible(false);
-            new Transactions(pinnumber).setVisible(true);
+            new Transactions(pinNumber).setVisible(true);
         }
     }
     
